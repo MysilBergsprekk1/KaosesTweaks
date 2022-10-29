@@ -83,7 +83,7 @@ namespace KaosesTweaks.BTTweaks
                     {
                         IM.ColorGreenMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
                         IM.QuickInformationMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
-                        EndCaptivityAction.ApplyByReleasing(hero);
+                        EndCaptivityAction.ApplyByReleasedByChoice(hero);
                     }
                 }
             }
