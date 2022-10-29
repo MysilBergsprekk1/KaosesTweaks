@@ -2966,12 +2966,14 @@ namespace KaosesTweaks.Settings
         #endregion //~ MobilePartyViewDistance
 
 
+        public void RegisterSettings() { }
+
         //~ Presets
         #region Presets
         public override IEnumerable<ISettingsPreset> GetBuiltInPresets()
         {
             var basePresets = base.CopyAsNew();
-            var baseSettings = BaseSettingsBuilder.Create("presetBuilder", "Building Presets")
+            var builder = BaseSettingsBuilder.Create("presetBuilder", "Building Presets")!
                 .CreatePreset("default", "Default Settings", presetBuilder => presetBuilder.Build(basePresets))
                 .CreatePreset("native-all-off", "native all off", presetBuilder =>
                     presetBuilder.Build(new MCMSettings
@@ -4500,9 +4502,12 @@ namespace KaosesTweaks.Settings
 
                         #endregion
                     })
-                )
-                .BuildAsGlobal();
-            return baseSettings.GetBuiltInPresets();
+                );
+            var globalSettings = builder.BuildAsGlobal();
+            globalSettings.Register();
+            globalSettings.Unregister();
+
+            return globalSettings.GetBuiltInPresets();
 
         }
         #endregion
